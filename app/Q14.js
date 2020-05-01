@@ -1,27 +1,27 @@
 import {LinkedList,Node} from "./Q12";
-class Stack {
-    constructor() {
+class Stack
+{
+    constructor() 
+    {
         this.list = new LinkedList();
     }
 
-    push(item) {
+    push(item) 
+    {
         this.list.addFirst(item);
     }
 
-    pop() {
-
-        if (!this.list.length) {
+    pop() 
+    {
+        if (!this.list.length) 
+        {
             return;
         }
-
-
       return  this.list.removeFirst();
     }
-
     get length() {
         return this.list.size;
     }
-
 }
 let stack = new Stack();
 stack.push(1);
