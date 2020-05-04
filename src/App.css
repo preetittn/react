@@ -3,4 +3,8 @@
 }
 table,td{
   border:1px solid black;
+  
+}
+.wrap{
+align-items: center;
 }
