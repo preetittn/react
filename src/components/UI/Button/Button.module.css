@@ -12,13 +12,12 @@
 
 .Button:first-of-type {
     margin-left: 0;
-    padding-left: 0;
+    padding-left: 0; 
 }
-
 .Success {
-    color:rgb(3, 180, 26);
+    color: #5C9210;
 }
 
 .Danger {
-    color:rgb(255, 70, 70);
+    color: #944317;
 }
