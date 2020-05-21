@@ -16,7 +16,7 @@ const ContactData = props => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Your Name'
+                    placeholder: 'Enter your fullname'
                 },
                 value: '',
                 validation: {
@@ -29,7 +29,7 @@ const ContactData = props => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Street'
+                    placeholder: 'Enter your Street'
                 },
                 value: '',
                 validation: {
@@ -42,7 +42,7 @@ const ContactData = props => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'ZIP Code'
+                    placeholder: 'ZIP Code(exactly 5 digits)'
                 },
                 value: '',
                 validation: {
@@ -58,7 +58,7 @@ const ContactData = props => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Country'
+                    placeholder: 'Enter your country'
                 },
                 value: '',
                 validation: {
@@ -71,7 +71,7 @@ const ContactData = props => {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Your E-Mail'
+                    placeholder: 'Enter your E-Mail address'
                 },
                 value: '',
                 validation: {

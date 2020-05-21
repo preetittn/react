@@ -1,5 +1,5 @@
 import React from 'react';
-import burgerLogo from '../../assets/images/burgerlogo.jpg';
+import burgerLogo from '../../assets/images/burgerlogo2.jpg';
 import classes from './Logo.module.css';
 
 
