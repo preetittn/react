@@ -1,0 +1,32 @@
+.AdminData {
+     margin: 20px auto ;
+   /* width: 80%;
+    height:100%; */
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    padding: 5px;
+    box-sizing: border-box;
+    background:linear-gradient(white,rgb(219, 228, 238),rgb(187, 225, 243));
+    border-radius: 8px;
+}
+
+.AdminData h3{
+    box-shadow: 0 2px 3px #ccc;
+    padding: 10px;
+    text-align: left;
+    box-sizing:border-box;
+}
+.AdminData p{
+    text-align: left;
+}
+
+/* .Success{
+    border:1px solid blue;
+} */
+
+@media (min-width : 600px){
+    .AdminData {
+        width: 500px;
+    }
+}
