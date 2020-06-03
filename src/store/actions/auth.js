@@ -53,10 +53,10 @@ export const auth = (login) => {
             .then(response => {
                 console.log(response);
                 const expirationDate = new Date(new Date().getTime() + response.data.expires_in * 1000);
-                localStorage.setItem('token', response.data.access_token);
+                localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userId', response.data.localId);
-                dispatch(authSuccess(response.data.access_token, response.data.localId));
+                // localStorage.setItem('id', response.data.localId);
+                dispatch(authSuccess(response.data.access_token));
                 dispatch(checkAuthTimeout(response.data.expires_in));
             })
             .catch(err => {

@@ -26,6 +26,12 @@ export const fetchProfile=()=>{
         axios.get("http://localhost:8080/customer/profile",{headers:headers})
         .then(response=>{
             console.log(response.data);
+            localStorage.setItem('id',response.data.firstName);
+            localStorage.setItem('firstName',response.data.firstName);
+            localStorage.setItem('lastName',response.data.lastName);
+            localStorage.setItem('contact',response.data.contact);
+            localStorage.setItem('active',response.data.active);
+
             dispatch(fetchProfileSuccess(response.data));
 
         })

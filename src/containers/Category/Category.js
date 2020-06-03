@@ -1,174 +1,52 @@
-import React,{useState} from 'react';
-import Aux from '../../hoc/Aux/Aux';
-import {updateObject,checkValidity} from '../../Shared/Utility';
-import Input from '../../UI/Input/Input';
-import Spinner from '../../UI/Spinner/Spinner';
-import CategoryProduct from '../../components/CategoryProduct/CategoryProduct';
+import React, { useEffect,useState } from 'react';
 import axios from 'axios';
-// import Button from '../../UI/Button/Button';
-import classes from './Category.module.css';
+import {connect} from 'react-redux';
 
-const Admin=React.memo((props)=>{
-    const [params,setParams]=useState({
-        // role:{
-        //     elementType:"select",
-        //     elementConfig:{
-        //         options:[
-        //             // {value:"none",displayValue:"User Role.."},
-        //             {value:"cust",displayValue:"Customer"},
-        //             {value:"sell",displayValue:"Seller"}
-        //         ]
-        //     },
-        //     validation:{},
-        //     value:"none",
-        //     isValid:true
-        // },
-        // SortBy:{
-        //     elementType:"select",
-        //     elementConfig:{
-        //         options:[
-        //             {value:"none",displayValue:"Sort by.."},
-        //             {value:"id",displayValue:"id"},
-        //         ],
-        //     },
-        //     validation:{},
-        //     value:"none",
-        //     isValid:true
-        // },
-        // page:{
-        //     elementType:"input",
-        //     elementConfig:{
-        //         type:"number",
-        //         placeholder:"Page number",
-        //     },
-        //     value:"",
-        //     validation:{
-        //         required:true,
-        //     },
-        //     isValid:false,
-        //     touched:false,
-        // },
-        // size: {
-        //     elementType: "input",
-        //     elementConfig: {
-        //       type: "number",
-        //       placeholder: "Size(no. of users on each page)",
-        //     },
-        //     value: "",
-        //     validation: {
-        //       required: true,
-        //     },
-        //     isValid: false,
-        //     touched: false,
-        //   },
+const Category =props=>{
+    const[categories,setCategories]=useState([]);
+    const{access_token}=props;
 
-    });
 
-    const [loading,setLoading]=useState(false);
-    const [users,setUsers]=useState([]);
-
-    const submitHandler = (event) => {
-        event.preventDefault();
-        console.log("Param in submit : ", params);
-        setLoading(true)
-        let result = null;
-    
-        const paramData = {};
-    
-        // let query = "?";
-        // for (let key in params) {
-        //   if (key !== "role") {
-        //     if (key !== "SortBy") {
-        //       query = query + "&" + key + "=" + params[key].value;
-        //     } else {
-        //       query = query + key + "=" + params[key].value;
-        //     }
-        //   }
-        // }
-    
-        // console.log("Query passed is",query)
-    
-        for (let key in params) {
-          paramData[key] = params[key].value;
+    useEffect(()=>{
+        console.log(access_token)
+        const headers = {
+            Authorization: 'Bearer' + access_token
         }
-    
-        console.log("Role is",paramData.role)
-
-        let fetchedData = null;    
-        // if (paramData.role === "sell") {
-            fetchedData = axios.get("http://localhost:8080/customer/profile/categories")
-            setLoading(false)
-        } 
-        // else  {
-        //     fetchedData = axios.get("http://localhost:8080/admin/customers")
-        //     setLoading(false)
-        // }
-    
-        fetchedData.then(response => {
-            result = response.data
-            setUsers(result)
-            console.log("Data received is: ",response)
-            console.log("Data fetched is",response.data)
-        }).catch(error => {
-            console.log("Error is",error)
-        })
-      });
-
-    const formElementsArray=[];
-    for(let key in params){
-        formElementsArray.push({
-            id:key,
-            config:params[key],
+        axios.get('http://localhost:8080/customer/profile/categories',{headers:headers})
+        .then(response=>{
+            console.log(response.data);
+            setCategories(response.data)
+        }).catch(error=>{
+            console.log(error);
         });
-    }
+    },[access_token]);
 
-    const inputChangedHandler=(event,paramName)=>{
-        const updatedSchedules = updateObject(params, {
-            [paramName]: updateObject(params[paramName], {
-              value: event.target.value,
-              valid: checkValidity(event.target.value, params[paramName].validation),
-              touched: true,
-            }),
-          });
-          setParams(updatedSchedules);
-    }
-
-    const showList=(l)=>{
-        if(l>0){
-            return <CategoryProduct fetchedUsers={users} userRole={params.role.value}/>;
-        };
-    };
-
-
-    let form=formElementsArray.map((formElement)=>(
-        <Input
-        key={formElement.id}
-        elementType={formElement.config.elementType}
-        elementConfig={formElement.config.elementConfig}
-        value={formElement.config.value}
-        invalid={!formElement.config.valid}
-        shouldValidate={formElement.config.validation}
-        touched={formElement.config.touched}
-        changed={(event) => inputChangedHandler(event, formElement.id)}/>
-    ));
-
-    if(loading){
-        form=<Spinner/>;
-    }
     return(
-        <Aux>
-            <div className={classes.AdminData}> 
-                <form onSubmit={submitHandler}>
-                    <h3><i className="fa fa-user">  Admin</i></h3>
-                    <p>List of all registered users.</p>
-                    {form}
-                    <button type="submit" class="btn btn-primary">Get Users</button>
-                </form>
+        <div className="container">
+            <div className="dropdown">
+            {/* <button className="btn btn-default dropdown-toggle" type="button" id="menu1" 
+            data-toggle="dropdown">View Store<span className="caret"></span>
+            </button> */}
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="menu1" 
+            data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
+                Visit Store
+            </button>
+                {/* <ul className="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
+                    {categories.map((category)=>
+                    <li role="presentation">{category.name}</li>
+                    )}
+                </ul> */}
+                <div class="dropdown-menu dropdown-primary" role="menu" aria-labelledby="menu1">
+                    {categories.map((category)=>
+                <li role="presentation"><a class="dropdown-item" href="#">{category.name}</a></li>)}
             </div>
-            <div>
-                <section>{showList(users.length)}</section>
             </div>
-        </Aux>
-    );
-
-export default Admin;
+        </div>
+    )
+};
+const mapStateToProps=state=>{
+    return{
+        access_token:state.auth.token
+    }
+}
+export default connect(mapStateToProps)(Category);

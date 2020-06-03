@@ -13,10 +13,13 @@ import Logout from './containers/Auth/Logout/Logout';
 import Forgotpassword from './containers/Auth/Forgotpassword/Forgotpassword';
 import Reset from './containers/Auth/Reset/Reset';
 import classes from './App.module.css';
-import Customer from "./containers/updateProfile/Customer/Customer";
-import EditCustomer from './containers/updateProfile/EditCustomer/EditCustomer';
+import CustomerProfile from "./containers/Profile/CustomerProfile/CustomerProfile";
+import EditCustomer from './containers/Profile/EditCustomer/EditCustomer';
 import Category from './containers/Category/Category';
-
+import FetchAddress from './containers/Profile/Address/FetchAddress/FetchAddress';
+import UpdateProfile from './containers/Profile/Address/UpdateAddress/UpdateAddress';
+import NewAddress from './containers/Profile/Address/NewAddress/NewAddress';
+import UpdateAddress from "./containers/Profile/Address/UpdateAddress/UpdateAddress";
 
 const asyncAuth = asyncComponent(() => {
   return import('./containers/Auth/Auth');
@@ -38,7 +41,11 @@ const App = (props) => {
       <Route path="/signup" component={Signup} /> 
       <Route path="/forgotpassword" component={Forgotpassword} />
       <Route path="/resetPassword" component={Reset}/>
-      {/* <Route path="/category" component={Category}/> */}
+      {/* <Route path="/newAddress" component={NewAddress}/>
+      <Route path="/updateAddress" component={UpdateAddress}/>
+      <Route path="/fetchAddress" component={FetchAddress}/> */}
+      {/* <Route path="/categories" component={Category}/> */}
+      {/* <Route path="/customerProfile" component={CustomerProfile}/> */}
       <Redirect to="/" />
     </Switch>
   );
@@ -48,16 +55,20 @@ const App = (props) => {
       <Switch>
         <Route path="/logout" component={Logout} />
         <Route path="/admin" component={Admin} />
-        <Route path='/customer' component={Customer}/>
+        <Route path='/customerProfile' component={CustomerProfile}/>
         <Route path="/editcustomer" component={EditCustomer}/>
         <Route path="/category" component={Category}/>
-
+        <Route path="/updateAddress" component={UpdateAddress}/>
+        <Route path="/fetchAddress" component={FetchAddress}/>
+        <Route path="/updateProfile" component={UpdateProfile}/>
+        <Route path="/newAddress" component={NewAddress}/>
+        <Route path="/categories" component={Category}/>
         <Route path="/auth" component={asyncAuth} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
       </Switch>
     );
-  }
+  };
 
   console.log(props.isAuthenticated)
   return (

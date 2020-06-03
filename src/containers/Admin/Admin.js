@@ -176,7 +176,7 @@ const Admin=React.memo((props)=>{
                     <h3><i className="fa fa-user">  Admin</i></h3>
                     <p>List of all registered users.</p>
                     {form}
-                    <button type="submit" class="btn btn-primary">Get Users</button>
+                    <button type="submit" class="btn btn-dark">Get Users</button>
                 </form>
             </div>
             <div>

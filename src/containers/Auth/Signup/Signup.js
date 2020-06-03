@@ -6,7 +6,7 @@ import Spinner from '../../../UI/Spinner/Spinner';
 import axios from "axios";
 // import * as actions from '../../../store/actions/index';
 // import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import {headers} from ''
 
 const Signup = (props) => {
@@ -32,7 +32,7 @@ const Signup = (props) => {
       },
       value: "",
       validation: {
-        required: true,
+        required: false,
       },
       isValid: false,
       touched: false,
@@ -168,12 +168,12 @@ const Signup = (props) => {
     //     registerData
     //   );
     // }
-      console.log("In customer block")
+    console.log("In customer block")
     //   responseData = axios.post(
     //     "http://localhost:8080/register/customer",
     //     registerData
     //   );
-  
+
     // responseData
     //   .then((response) => {
     //     setLoading(false);
@@ -184,18 +184,19 @@ const Signup = (props) => {
     //     setLoading(false);
     //     console.log("Error is", error);
     //   });
-    console.log("****"+registerData);
-axios.post('http://localhost:8080/register/customer',registerData)
-.then(response => {
-console.log(response.data);
-setLoading(false);
-})
-.catch(error=> {
-if (error) {
-  setLoading(false);
-console.log(error.response.data);
-}
-})
+    console.log("****" + registerData);
+    axios.post('http://localhost:8080/register/customer', registerData)
+      .then(response => {
+        console.log(response.data);
+        props.history.push("/signin")
+        setLoading(false);
+      })
+      .catch(error => {
+        if (error) {
+          setLoading(false);
+          console.log(error);
+        }
+      })
   };
 
   if (loading) {
@@ -208,12 +209,12 @@ console.log(error.response.data);
       <p>Please fill in all the required fields to create a new user account.</p>
       <form onSubmit={submitHandler}>
         {form}
-        
-        <Link to="/signin">
-          <button type="submit" class="btn btn-success">SignUp</button>
-</Link>
-        <br/>
-        <br/>
+
+        {/* <Link to="/signin"> */}
+          <button type="submit" class="btn btn-dark">SignUp</button>
+        {/* </Link> */}
+        <br />
+        <br />
         Already have an account?<Link to="/signin">  Signin</Link>
       </form>
     </div>

@@ -22,7 +22,10 @@ const navigationItems = (props) => (
   <ul className={classes.NavigationItems}>
     <NavigationItem link="/" active>Home</NavigationItem>
     <NavigationItem link="/admin" active>Admin</NavigationItem>
-    {props.isAuth ? <NavigationItem link="/customer">Profile</NavigationItem> : null}
+    {props.isAuth ? <NavigationItem link="/customerProfile">Profile</NavigationItem> : null}
+
+    <NavigationItem link="/product" active>Product</NavigationItem>
+
 
     {!props.isAuth ? (
       <NavigationItem link="/auth">Signin</NavigationItem>

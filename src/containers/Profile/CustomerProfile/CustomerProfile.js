@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux';
 // import * as actions from '../../../store/actions/index';
 import axios from 'axios';
-import {Link} from'react-router-dom';
+import { Link } from 'react-router-dom';
 import Aux from '../../../hoc/Aux/Aux';
 import classes from './Customer.module.css';
 
@@ -29,7 +29,7 @@ const Customer = props => {
                 //setImage(response.data.image);
             })
             .catch(error => {
-                console.log(error.response.data.error);
+                console.log(error);
             });
     }, [access_token]);
 
@@ -67,7 +67,7 @@ const Customer = props => {
                         <form class="row" >
 
                             <div class="form-group col-lg-3">
-                                <label class=" control-label">First:</label>
+                                <label class=" control-label">First Name:</label>
                             </div>
                             <div class="col-lg-9">
                                 <input class="form-control" readonly="readonly" type="text" value={firstName} onChange={firstNameChangeHandler} />
@@ -89,7 +89,7 @@ const Customer = props => {
                             </div>
 
 
-                            <div class="form-group col-md-3">
+                            {/* <div class="form-group col-md-3">
                                 <label class=" control-label">Password:</label>
                             </div>
                             <div class="col-md-9">
@@ -101,17 +101,21 @@ const Customer = props => {
                             </div>
                             <div class="col-md-9">
                                 <input class="form-control" type="password" />
-                            </div>
+                            </div> */}
 
                             <div class="form-group col-md-3">
                                 <label class=" control-label"></label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 {/* <button type="button" class="btn btn-success">Save Changes</button>
                                     &nbsp;&nbsp;&nbsp;
                                     <button type="reset" class="btn btn-danger">Cancel</button>
                                     &nbsp;&nbsp;&nbsp; */}
                                 <Link to="/editcustomer"><button type="edit" class="btn btn-info">Update Profile</button></Link>
+                            </div>
+
+                            <div class="col-md-3">
+                                <Link to="/fetchAddress"><button type="button" class="btn btn-info">View Address</button></Link>
                             </div>
                         </form>
                     </div>

@@ -20,6 +20,7 @@
   @media(max-width:499px){
     .DesktopOnly{
         display: none;
+        /* justify-content: space-between; */
     }
 }
  .Toolbar .SearchContainer button { 

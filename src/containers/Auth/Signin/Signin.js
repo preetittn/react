@@ -124,7 +124,7 @@ const switchAuthModeHandler=()=>{
       <form onSubmit={submitHandler}>
         {form}
         <br/>
-        <button type="submit" class="btn btn-success" onClick={switchAuthModeHandler}>Signin</button>
+        <button type="submit" class="btn btn-dark" onClick={switchAuthModeHandler}>Signin</button>
 
         <br/>
         <br/>

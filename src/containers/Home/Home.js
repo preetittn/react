@@ -6,6 +6,8 @@ import heels from '../../assets/images/heels.jpg';
 import sidebag from '../../assets/images/sidebag.jpg';
 import accessories from '../../assets/images/accessories.jpg';
 import {Link} from 'react-router-dom';
+import Modal from '../../UI/Modal/Modal';
+import Signin from "../Auth/Signin/Signin";
 
 
 
@@ -86,11 +88,20 @@ class Home extends Component {
                         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400" height="300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">400x300</text></svg>
                     </div>
                 </div>
+
+                {/* <Modal 
+                show={Signin} modalClosed={Home}
+                >
+                {Signin}
+            </Modal> */}
+
                 {/* footer */}
                 <footer class="container">
                     <p class="float-right"><a href="#">Back to top</a></p>
                     <p>&copy; 2017-2020 Company, Inc. &middot; <Link to="/">Privacy</Link> &middot; <Link to="/">Terms</Link></p>
                 </footer>
+
+
             </Aux>
         );
     }
