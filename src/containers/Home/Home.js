@@ -6,8 +6,8 @@ import heels from '../../assets/images/heels.jpg';
 import sidebag from '../../assets/images/sidebag.jpg';
 import accessories from '../../assets/images/accessories.jpg';
 import {Link} from 'react-router-dom';
-import Modal from '../../UI/Modal/Modal';
-import Signin from "../Auth/Signin/Signin";
+// import Modal from '../../UI/Modal/Modal';
+// import Signin from "../Auth/Signin/Signin";
 
 
 

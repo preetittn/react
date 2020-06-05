@@ -61,9 +61,9 @@ const Customer = props => {
                                 <br />atleast one lowercase letter
                                 <br />atleast one numeric digit.
                         </div> */}
-
+<div class="col-md-10">
                         <h3>Personal info</h3>
-
+</div>
                         <form class="row" >
 
                             <div class="form-group col-lg-3">

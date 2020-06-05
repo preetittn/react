@@ -24,7 +24,7 @@ const navigationItems = (props) => (
     <NavigationItem link="/admin" active>Admin</NavigationItem>
     {props.isAuth ? <NavigationItem link="/customerProfile">Profile</NavigationItem> : null}
 
-    <NavigationItem link="/product" active>Product</NavigationItem>
+    {props.isAuth ? <NavigationItem link="/fetchProductt" active>Product</NavigationItem> : null}
 
 
     {!props.isAuth ? (

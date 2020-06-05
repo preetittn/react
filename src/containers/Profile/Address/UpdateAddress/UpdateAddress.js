@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import Spinner from '../../../../UI/Spinner/Spinner';
 import Button from '../../../../UI/Button/Button';
+import classes from './UpdateAddress.module.css';
 
 const UpdateAddress = props => {
 
@@ -66,61 +67,44 @@ const UpdateAddress = props => {
     }
 
     return (
-        <div className="container">
+        <div className="container ">
             <h1>UpdateAddress</h1>
-            <form className="row" onSubmit={submitHandler} >
+            <form onSubmit={submitHandler} >
+                <div className={classes.UpdateAddress}>
+                    <div className="form-group">
+                        <input className="form-control" placeholder="Id" type="text" onChange={idChangeHandler} />
+                    </div>
 
-                {/* <div className="form-group col-md-3">
-                <label className=" control-label">Id</label>
-            </div> */}
-                <div className="form-group col-lg-9">
-                    <input className="form-control" placeholder="Id" type="text" value={address.id} onChange={idChangeHandler} />
-                </div>
-                {/* <div className="form-group col-md-3">
-                <label className=" control-label">Country</label>
-            </div> */}
-                <div className="form-group col-lg-9">
-                    <input className="form-control " placeholder="Country" type="text" value={address.country} onChange={countryChangeHandler} />
-                </div>
-                {/* <div className="form-group col-md-3">
-                <label className=" control-label">State</label>
-            </div>   */}
-                <div className="form-group col-lg-9">
-                    <input className="form-control " placeholder="State" type="text" value={address.state} onChange={stateChangeHandler} />
-                </div>
-                {/* <div className="form-group col-md-3">
-                <label className=" control-label">City</label>
-            </div> */}
-                <div className="form-group col-lg-9">
-                    <input className="form-control " placeholder="City" type="text" value={address.city} onChange={cityChangeHandler} />
-                </div>
-                {/* <div className="form-group col-md-3">
-                <label className=" control-label">zipCode</label>
-            </div> */}
-                <div className="form-group col-lg-9">
-                    <input className="form-control " placeholder="Zipcode" type="text" value={address.zipCode} onChange={zipCodeChangeHandler} />
-                </div>
-                {/* <div className="form-group col-md-3">
-                <label className=" control-label">Address</label>
-            </div> */}
-                <div className="form-group col-lg-9">
-                    <input className="form-control " placeholder="Address" type="text" value={address.address} onChange={addressChangeHandler} />
-                </div>
-                {/* <div className="form-group col-md-3">
-                <label className=" control-label">Label</label>
-            </div> */}
-                <div className="form-group col-lg-9">
-                    <input className="form-control " placeholder="Label" type="text" value={address.label} onChange={labelChangeHandler} />
-                </div>
+                    <div className="form-group">
+                        <input className="form-control " placeholder="Country" type="text" onChange={countryChangeHandler} />
+                    </div>
 
-                {/* <div className="form-group col-md-3">
-                <label className=" control-label"></label>
-            </div> */}
-                <div className="col-md-6">
+                    <div className="form-group">
+                        <input className="form-control " placeholder="State" type="text" onChange={stateChangeHandler} />
+                    </div>
+
+                    <div className="form-group">
+                        <input className="form-control " placeholder="City" type="text" onChange={cityChangeHandler} />
+                    </div>
+
+                    <div className="form-group">
+                        <input className="form-control " placeholder="Zipcode" type="text" onChange={zipCodeChangeHandler} />
+                    </div>
+
+                    <div className="form-group">
+                        <input className="form-control " placeholder="Address" type="text" onChange={addressChangeHandler} />
+                    </div>
+
+                    <div className="form-group">
+                        <input className="form-control " placeholder="Label" type="text" onChange={labelChangeHandler} />
+                    </div>
+
+                    {/* <div className="col-md-5"> */}
                     <button type="edit" className="btn btn-info">Update Address</button>
-                </div>
-                <div className="col-md-2">
+                    {/* </div> */}
+                    {/* <div className="col-md-3"> */}
                     <Button btnType="Primary" className="btn btn-info" clicked={() => newAddressHanlder()}>Add new Address</Button>
+                    {/* </div> */}
                 </div>
             </form>
         </div>
@@ -130,7 +114,6 @@ const UpdateAddress = props => {
 const mapStateToProps = state => {
     return {
         access_token: state.auth.token
-
     };
 };
 

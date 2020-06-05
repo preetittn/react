@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Aux from '../../../../hoc/Aux/Aux';
 import Button from '../../../../UI/Button/Button';
 import classes from './FetchAddress.module.css';
-//import UpdateAddress from '../UpdateAddress/UpdateAddress';
 
 const FetchAddress = props => {
 
     const [addresses, setAddresses] = useState([]);
-    // const [id,setId]=useState("");
-    // const [country,setCountry] = useState("");     
-    // const [city,setCity] = useState("");     
-    // const [state,setState] = useState(""); 
-    // const [zipcode,setZipcode]=useState("");
-    // const [address,setAddress]=useState("");
-    // const [label,setLabel]=useState("");
 
     const { access_token } = props;
     console.log(access_token)
@@ -36,8 +27,6 @@ const FetchAddress = props => {
             });
     }, [access_token]);
 
-
-
     const deleteAddressHandler = (id) => {
         const headers = {
             Authorization: 'Bearer' + access_token
@@ -51,25 +40,16 @@ const FetchAddress = props => {
 
     };
 
-    // const idChangeHandler = (e) => {setId(e.target.value)     }  
-    // const countryChangeHandler = (e) => {setCountry(e.target.value)     }      
-    // const stateChangeHandler = (e) => {setState(e.target.value)     }      
-    // const cityChangeHandler = (e) => {setCity(e.target.value) }
-    // const zipcodeChangeHandler = (e) => {setZipcode(e.target.value) }
-    // const addressChangeHandler = (e) => {setAddress(e.target.value) }
-    // const labelChangeHandler = (e) => {setLabel(e.target.value) }
-
-
     const updateAddressHandler = () => {
         props.history.push('/updateAddress');
     }
     return (
 
         <div className={classes.FetchAddress}>
-            <h4>Fetched Address</h4>
+            <h4>Address Details</h4>
             <div className="row" >
                 <div className="col mb-3" >
-                        <div className="card-body" ></div>
+                        {/* <div className="card-body" ></div> */}
                        <center> <table className="table table-hover table-responsive-sm" style={{ width: "auto"}} >
                             <thead className="thead-dark">
                                 <tr>

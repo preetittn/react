@@ -115,24 +115,15 @@ const NewAddress=props=>{
             <Aux>
                 <div className="container">
                     <h1>New Address</h1>
-                    <div className="row">
-                        <div className="col-md-12 address-info">
-                            <h4>fill your address dtails:</h4>
-
+                        <div >
+                            <h3>fill your address details:</h3>
                             <form class="row" onSubmit={submitHandler} >
-                                <div className="row form-group col-lg-9">
-                                    {form}                
-                                </div>                             
                                 
-                                {/* <div className="form-group col-md-3">
-                                    <label className=" control-label"></label>
-                                </div> */}
-                                    <div className="col-md-6">
+                                    {form}                
+                                                            
                                     <button type="submit" className="btn btn-info">Add address</button>
-                                </div>
                             </form>
                         </div>
-                    </div>
                 </div>
             </Aux>
         )

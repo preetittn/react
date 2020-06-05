@@ -20,6 +20,9 @@ import FetchAddress from './containers/Profile/Address/FetchAddress/FetchAddress
 import UpdateProfile from './containers/Profile/Address/UpdateAddress/UpdateAddress';
 import NewAddress from './containers/Profile/Address/NewAddress/NewAddress';
 import UpdateAddress from "./containers/Profile/Address/UpdateAddress/UpdateAddress";
+import FetchProductt from "./containers/Product/FetchProduct/FetchProductt";
+import UpdateProduct from "./containers/Product/UpdateProduct/UpdateProduct";
+import AddProduct from './containers/Product/AddProduct/AddProduct';
 
 const asyncAuth = asyncComponent(() => {
   return import('./containers/Auth/Auth');
@@ -41,6 +44,7 @@ const App = (props) => {
       <Route path="/signup" component={Signup} /> 
       <Route path="/forgotpassword" component={Forgotpassword} />
       <Route path="/resetPassword" component={Reset}/>
+      {/* <Route path="/fetchProduct" component={FetchProduct}/> */}
       {/* <Route path="/newAddress" component={NewAddress}/>
       <Route path="/updateAddress" component={UpdateAddress}/>
       <Route path="/fetchAddress" component={FetchAddress}/> */}
@@ -64,6 +68,9 @@ const App = (props) => {
         <Route path="/newAddress" component={NewAddress}/>
         <Route path="/categories" component={Category}/>
         <Route path="/auth" component={asyncAuth} />
+        <Route path="/fetchProductt" component={FetchProductt} />
+        <Route path="/updateProduct" component={UpdateProduct} />
+        <Route path="/addProduct" component={AddProduct} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
       </Switch>
