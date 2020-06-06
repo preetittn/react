@@ -9,7 +9,21 @@ import {Redirect,Link} from 'react-router-dom';
 
 const Signin = props => {
   const [signin, setSignin] = useState({
-    
+    role: {
+      elementType: "select",
+      elementConfig: {
+        options: [
+          { value: "none", displayValue: "SELECT USER TYPE" },
+          { value: "Admin", displayValue: "Admin" },
+          { value: "Seller", displayValue: "Seller" },
+          { value: "Customer", displayValue: "Customer" },
+        ],
+      },
+      value: '',
+      validation: {},            
+      valid:false,
+      touched:false
+    },
     username: {
       elementType: "input",
       elementConfig: {

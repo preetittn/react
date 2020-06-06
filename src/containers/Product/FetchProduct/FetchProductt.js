@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Aux from '../../../hoc/Aux/Aux';
-import { updateObject, checkValidity } from '../../../Shared/Utility';
-import Input from '../../../UI/Input/Input';
-import Spinner from '../../../UI/Spinner/Spinner';
+import React, { useState, useEffect } from 'react';
+// import Aux from '../../../hoc/Aux/Aux';
+// import { updateObject, checkValidity } from '../../../Shared/Utility';
+// import Input from '../../../UI/Input/Input';
+// import Spinner from '../../../UI/Spinner/Spinner';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import Button from '../../../UI/Button/Button';
@@ -11,57 +11,57 @@ import Button from '../../../UI/Button/Button';
 const FetchProductt = React.memo((props) => {
     const [products, setProducts] = useState([])
     const [params, setParams] = useState({
-        order: {
-            elementType: "select",
-            elementConfig: {
-                options: [
-                    { value: "none", displayValue: "Order.." },
-                    { value: "asc", displayValue: "Ascending" },
-                    { value: "desc", displayValue: "Decending" }
-                ]
-            },
-            validation: {},
-            value: "",
-            isValid: true
-        },
-        SortBy: {
-            elementType: "select",
-            elementConfig: {
-                options: [
-                    { value: "none", displayValue: "Sort by.." },
-                    { value: "id", displayValue: "id" },
-                ],
-            },
-            validation: {},
-            value: "none",
-            isValid: true
-        },
-        page: {
-            elementType: "input",
-            elementConfig: {
-                type: "number",
-                placeholder: "Page number",
-            },
-            value: "",
-            validation: {
-                required: true,
-            },
-            isValid: false,
-            touched: false,
-        },
-        size: {
-            elementType: "input",
-            elementConfig: {
-                type: "number",
-                placeholder: "Size(no. of users on each page)",
-            },
-            value: "",
-            validation: {
-                required: true,
-            },
-            isValid: false,
-            touched: false,
-        },
+        // order: {
+        //     elementType: "select",
+        //     elementConfig: {
+        //         options: [
+        //             { value: "none", displayValue: "Order.." },
+        //             { value: "asc", displayValue: "Ascending" },
+        //             { value: "desc", displayValue: "Decending" }
+        //         ]
+        //     },
+        //     validation: {},
+        //     value: "",
+        //     isValid: true
+        // },
+        // SortBy: {
+        //     elementType: "select",
+        //     elementConfig: {
+        //         options: [
+        //             { value: "none", displayValue: "Sort by.." },
+        //             { value: "id", displayValue: "id" },
+        //         ],
+        //     },
+        //     validation: {},
+        //     value: "none",
+        //     isValid: true
+        // },
+        // page: {
+        //     elementType: "input",
+        //     elementConfig: {
+        //         type: "number",
+        //         placeholder: "Page number",
+        //     },
+        //     value: "",
+        //     validation: {
+        //         required: true,
+        //     },
+        //     isValid: false,
+        //     touched: false,
+        // },
+        // size: {
+        //     elementType: "input",
+        //     elementConfig: {
+        //         type: "number",
+        //         placeholder: "Size(no. of users on each page)",
+        //     },
+        //     value: "",
+        //     validation: {
+        //         required: true,
+        //     },
+        //     isValid: false,
+        //     touched: false,
+        // },
 
     });
 
@@ -69,41 +69,44 @@ const FetchProductt = React.memo((props) => {
 
     const { access_token } = props;
     console.log(access_token)
-    const submitHandler = (event) => {
-        event.preventDefault();
-        console.log("Param in submit : ", params);
+
+    // const submitHandler = (event) => {
+        // event.preventDefault();
+        // console.log("Param in submit : ", params);
         // setLoading(true)
 
-        console.log(access_token)
+        // console.log(access_token)
 
-        const paramData = {};
+        // const paramData = {};
 
-        let query = "?";
-        for (let key in params) {
-            if (key !== "SortBy") {
-                query = query + "" + key + "=" + params[key].value + "&";
-            } else {
-                query = query + key + "=" + params[key].value + "&";
-            }
-        }
-        console.log("Query passed is", query)
+        // let query = "?";
+        // for (let key in params) {
+        //     if (key !== "SortBy") {
+        //         query = query + "" + key + "=" + params[key].value + "&";
+        //     } else {
+        //         query = query + key + "=" + params[key].value + "&";
+        //     }
+        // }
+        // console.log("Query passed is", query)
 
-        for (let key in params) {
-            paramData[key] = params[key].value;
-        }
-
+        // for (let key in params) {
+        //     paramData[key] = params[key].value;
+        // }
+useEffect(()=>{
         const headers = {
             Authorization: 'Bearer' + access_token
         }
-        axios.get('http://localhost:8080/product/view/all' + query, { headers: headers })
+        axios.get('http://localhost:8080/product/view/all', { headers: headers })
             .then(response => {
                 console.log(response.data);
                 setProducts(response.data);
             })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+            // .catch(error => {
+            //     console.log(error);
+            // });
+    },[access_token])
+
+
     const deleteProductHandler = (id) => {
         const headers = {
             Authorization: 'Bearer' + access_token
@@ -122,48 +125,49 @@ const FetchProductt = React.memo((props) => {
     }
 
 
-    const formElementsArray = [];
-    for (let key in params) {
-        formElementsArray.push({
-            id: key,
-            config: params[key],
-        });
-    }
+    // const formElementsArray = [];
+    // for (let key in params) {
+    //     formElementsArray.push({
+    //         id: key,
+    //         config: params[key],
+    //     });
+    // }
 
-    const inputChangedHandler = (event, paramName) => {
-        const updatedSchedules = updateObject(params, {
-            [paramName]: updateObject(params[paramName], {
-                value: event.target.value,
-                valid: checkValidity(event.target.value, params[paramName].validation),
-                touched: true,
-            }),
-        });
-        setParams(updatedSchedules);
-    }
+    // const inputChangedHandler = (event, paramName) => {
+    //     const updatedSchedules = updateObject(params, {
+    //         [paramName]: updateObject(params[paramName], {
+    //             value: event.target.value,
+    //             valid: checkValidity(event.target.value, params[paramName].validation),
+    //             touched: true,
+    //         }),
+    //     });
+    //     setParams(updatedSchedules);
+    // }
 
-    let form = formElementsArray.map((formElement) => (
-        <Input
-            key={formElement.id}
-            elementType={formElement.config.elementType}
-            elementConfig={formElement.config.elementConfig}
-            value={formElement.config.value}
-            invalid={!formElement.config.valid}
-            shouldValidate={formElement.config.validation}
-            touched={formElement.config.touched}
-            changed={(event) => inputChangedHandler(event, formElement.id)} />
-    ));
+    // let form = formElementsArray.map((formElement) => (
+    //     <Input
+    //         key={formElement.id}
+    //         elementType={formElement.config.elementType}
+    //         elementConfig={formElement.config.elementConfig}
+    //         value={formElement.config.value}
+    //         invalid={!formElement.config.valid}
+    //         shouldValidate={formElement.config.validation}
+    //         touched={formElement.config.touched}
+    //         changed={(event) => inputChangedHandler(event, formElement.id)} />
+    // ));
 
-    if (loading) {
-        form = <Spinner />;
-    }
+    // if (loading) {
+    //     form = <Spinner />;
+    // }
     return (
-        <Aux>
-            <div >
+        <>
+            {/* <div >
                 <form onSubmit={submitHandler}>
                     <h3><i className="fa fa-user">  Product</i></h3>
                     {form}
                     <button type="submit" class="btn btn-dark">Get Products</button>
                 </form>
+                </div> */}
 
                 <div>
                     <h4>Fetched Product</h4>
@@ -173,6 +177,7 @@ const FetchProductt = React.memo((props) => {
                             <center> <table className="table table-hover table-responsive-sm" style={{ width: "auto" }} >
                                 <thead className="thead-dark">
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope='col'>id</th>
                                         <th scope='col'>name</th>
                                         <th scope='col'>brand</th>
@@ -186,7 +191,8 @@ const FetchProductt = React.memo((props) => {
                                 <tbody>
                                     {products.map((product, index) => (
                                         <tr key={product.id}>
-                                            <th scope="row">{product.id}</th>
+                                            <th scope="row">{index}</th>
+                                            <td>{product.id}</td>
                                             <td>{product.name}</td>
                                             <td>{product.brand}</td>
                                             <td>{product.description}</td>
@@ -207,10 +213,7 @@ const FetchProductt = React.memo((props) => {
                         </div>
                     </div>
                 </div>
-
-            </div>
-
-        </Aux>
+        </>
     );
 })
 

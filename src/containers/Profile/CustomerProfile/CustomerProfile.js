@@ -8,7 +8,7 @@ import classes from './Customer.module.css';
 
 // class Customer extends Component {
 
-const Customer = props => {
+const CustomerProfile = props => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [contact, setContact] = useState("");
@@ -132,4 +132,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps)(Customer);
+export default connect(mapStateToProps)(CustomerProfile);

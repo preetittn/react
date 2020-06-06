@@ -186,26 +186,12 @@ const SignupSeller = (props) => {
     event.preventDefault();
     setLoading(true);
     const registerData = { accountNonLocked: true };
-
     for (let key in signup) {
       registerData[key] = signup[key].value;
     }
-
     console.log("registered data is", registerData);
-    console.log("Registered as,", (signup.signupAs.value));
     let responseData = null;
-    // if (signup.signupAs.value === "cust") {
-      console.log("In Seller block")
-      responseData = axios.post(
-        "http://localhost:8080/register/seller",
-        registerData
-      );
-    // } else {
-    //   responseData = axios.post(
-    //     "http://localhost:8080/auth/sellers",
-    //     registerData
-    //   );
-    // }
+      responseData = axios.post("http://localhost:8080/register/seller",registerData);
     responseData
       .then((response) => {
         setLoading(false);
@@ -228,6 +214,7 @@ const SignupSeller = (props) => {
       <p>Please fill in all the required fields to create a new account.</p>
       <form onSubmit={submitHandler}>
         {form}
+        <button type="submit" data-toggle="modal" data-target="#myModal">Signup</button>
       </form>
     </div>
   );

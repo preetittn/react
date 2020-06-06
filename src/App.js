@@ -23,6 +23,11 @@ import UpdateAddress from "./containers/Profile/Address/UpdateAddress/UpdateAddr
 import FetchProductt from "./containers/Product/FetchProduct/FetchProductt";
 import UpdateProduct from "./containers/Product/UpdateProduct/UpdateProduct";
 import AddProduct from './containers/Product/AddProduct/AddProduct';
+import AddCategory from './containers/Admin/CategoryOpr/AddCategory/AddCategory';
+import UpdateCategory from './containers/Admin/CategoryOpr/UpdateCategory/UpdateCategory';
+import CategoryOpr from './containers/Admin/CategoryOpr/CategoryOpr';
+import Dropdown from './components/Navigation/Toolbar/Dropdown/Dropdown';
+import SingleCategory from './containers/Admin/CategoryOpr/SingleCategory/SingleCategory';
 
 const asyncAuth = asyncComponent(() => {
   return import('./containers/Auth/Auth');
@@ -61,6 +66,7 @@ const App = (props) => {
         <Route path="/admin" component={Admin} />
         <Route path='/customerProfile' component={CustomerProfile}/>
         <Route path="/editcustomer" component={EditCustomer}/>
+        {/* customer view */}
         <Route path="/category" component={Category}/>
         <Route path="/updateAddress" component={UpdateAddress}/>
         <Route path="/fetchAddress" component={FetchAddress}/>
@@ -71,6 +77,14 @@ const App = (props) => {
         <Route path="/fetchProductt" component={FetchProductt} />
         <Route path="/updateProduct" component={UpdateProduct} />
         <Route path="/addProduct" component={AddProduct} />
+        <Route path="/addCategory" component={AddCategory}/>
+        <Route path="/updateCategory" component={UpdateCategory}/>
+        {/* admin perform add,update on category */}
+        <Route path="/categoryOpr" component={CategoryOpr}/>
+        <Route path="/dropdown" component={Dropdown}/>
+        <Route path="/singleCategory" component={SingleCategory}/>
+
+
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
       </Switch>

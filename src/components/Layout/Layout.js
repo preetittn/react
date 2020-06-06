@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {connect} from 'react-redux';
 import Aux from '../../hoc/Aux/Aux';
 import classes from './Layout.module.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
@@ -19,9 +19,11 @@ const Layout = props => {
         return (
             <Aux>
                 <Toolbar
+                    isRole={props.isRole}
                     isAuth={props.isAuthenticated}
                     drawerToggleClicked={sideDrawerToggleHandler} />
                 <SideDrawer
+                isRole={props.isRole}
                     isAuth={props.isAuthenticated}
                     open={sideDrawerIsVisible}
                     closed={sideDrawerClosedHandler} />
@@ -29,7 +31,12 @@ const Layout = props => {
                     {props.children}
                 </main>
             </Aux>
-        )
-    }
+        )};
 
-export default Layout;
+        const mapStatesToProps=state=>{
+            return{
+              isAuthenticated:state.auth.token!==null,
+              isRole:state.auth.role
+            };
+          };
+export default connect(mapStatesToProps)(Layout);
